@@ -6,8 +6,8 @@
         <label for="menu-toggle" class="menu-icon">&#9776;</label>
         <ul class="menu-links">
             <li><a href="#home">Home</a></li>
-            <li><a href="#login">Login</a></li>
-            <li><a href="#signup">Sign Up</a></li>
+            <li><a href="registerLogin/login.php">Login</a></li>
+            <li><a href="registerLogin/signup.php">Sign Up</a></li>
             <li><a href="#reserveren">Reserveren</a></li>
             <li><a href="#account">Account</a></li>
         </ul>

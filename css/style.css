@@ -172,6 +172,167 @@ body {
     right: 0;
   }
 
+
+/* Form Container */
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 30px;
+    padding: 50px;
+    background-color: var(--c1);
+}
+
+/* Form Box */
+.form-box {
+    background: var(--c5);
+    color: var(--c1);
+    width: 300px;
+    padding: 20px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.form-box h2 {
+    margin-bottom: 20px;
+    color: var(--c6);
+}
+
+/* Input Fields */
+.form-box input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid var(--c4);
+    border-radius: 5px;
+    background: var(--c1);
+    color: var(--c6);
+}
+
+/* Button Styling */
+.form-box .button {
+    display: inline-block;
+    width: 100%;
+    padding: 10px 0;
+    font-size: 1rem;
+    background: var(--c2);
+    color: var(--c1);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+
+/* Form Options */
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+    font-size: 0.9rem;
+}
+
+.form-options a {
+    color: var(--c6);
+    text-decoration: none;
+}
+
+/* responsive */
+
+body, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+main {
+    padding: 10px;
+}
+
+/* Slideshow styling */
+#slideshow {
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    margin: auto;
+}
+
+.slide_content img {
+    width: 100%;
+    height: auto;
+}
+
+
+.movie-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.card {
+    flex: 1 1 calc(50% - 20px); /* Flexibele breedte */
+    max-width: 300px;
+    background-color: var(--c5);
+    border: 2px solid var(--c4);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px var(--c6);
+    text-align: center;
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+}
+
+.card h2 {
+    font-size: 1.5em;
+    margin: 10px 0;
+}
+
+.card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.card li {
+    margin: 5px 0;
+}
+
+.card button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px 0;
+    background-color: var(--c2);
+    border-radius: 20px;
+    border: 2px solid var(--c4);
+    color: var(--c1);
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.card button:hover {
+    background-color: var(--c2);
+}
+
+/* Responsiveness voor kleinere schermen */
+@media (max-width: 768px) {
+    .card {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+
+    #slideshow {
+        max-width: 100%;
+    }
+}
+
+
 /* Footer */
 .footer {
     background: var(--c2);
@@ -185,4 +346,9 @@ body {
 
 .footer img {
     border-radius: 50%;
+}
+
+.social img {
+    height: 5vh;
+    width: 3vw;
 }
