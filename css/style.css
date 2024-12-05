@@ -1,33 +1,188 @@
-@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-
-:root{
-    --c1: #FFFFFF; /* Background */
-    --c2: #8A20B1; /* Header and Nav */
-    --c3: #66C0F4; /* Button and Highlights */
-    --c4: #C7D5E0; /* Light text */
-    --c5: #4A6782; /* Light background for cards */
+:root {
+    --c1: #FFFFFF;
+    --c2: #8A20B1;
+    --c3: #66C0F4;
+    --c4: #C7D5E0;
+    --c5: #4A6782;
+    --c6: #000000;
     --default: #121213;
     --empty: #3a3a3c;
     --wrong: #b59f3b;
     --right: #538d4e;
 }
 
+/* Algemene opmaak */
 body {
-    min-height: 100vh;
-    font-family: "Roboto Sans", sans serif;
-    background: var(--c1);
+    font-family: Arial, sans-serif;
     margin: 0;
+    background-color: var(--c1);
 }
 
-header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    border-radius: 10px;
-    box-shadow: 1px 2px 10px black;
-    padding: 10px;
-    align-items: center;
+/* Header */
+.header {
     background-color: var(--c2);
-    margin-bottom: 20px;
-    margin-top: 0;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--c1);
+}
+
+.header h1 {
+    font-size: 2rem;
+}
+
+
+/* Hamburger menu */
+.hamburger-menu {
+    position: relative;
+}
+
+.menu-icon {
+    font-size: 30px;
+    cursor: pointer;
+    color: var(--c1);
+}
+
+.menu-links {
+    display: none;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background: var(--c2);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#menu-toggle:checked + .menu-icon + .menu-links {
+    display: block;
+}
+
+.menu-links li {
+    list-style: none;
+    margin: 10px 0;
+}
+
+.menu-links li a {
+    color: var(--c1);
+    text-decoration: none;
+}
+
+/* Slideshow */
+/* Slides */
+.slides {
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    width: 900px;
+    height: 950px;
+    margin: 0 auto;
+}
+
+.slide_content {
+    min-width: 100%;
+    transition: transform 1s ease-in-out;
+}
+
+.slide_content img {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    height: auto;
+}
+
+/* Movie Cards */
+.movie-cards {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 20px;
+    background: var(--c1);
+    margin-top: -460px; /* Zorg ervoor dat de kaarten hoger staan */
+}
+
+.card {
+    background: var(--c5);
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    width: 250px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card img {
+    border-radius: 5px;
+}
+
+.card h2 {
+    color: var(--c6);
+    margin-top: 10px;
+}
+
+.card ul {
+    list-style: none;
+    padding: 0;
+    color: var(--c4);
+    margin-top: 10px;
+}
+
+.card img {
+    height: 50vh;
+    width: 17vw;
+}
+
+.button {
+    display: inline-block;
+    border-radius: 15px;
+    background-color: var(--c2);
+    border: 2px solid var(--c4);
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 28px;
+    padding: 20px;
+    width: 200px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+  }
+  
+  .button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+  
+  .button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+  }
+  
+  .button:hover span {
+    padding-right: 25px;
+  }
+  
+  .button:hover span:after {
+    opacity: 1;
+    right: 0;
+  }
+
+/* Footer */
+.footer {
+    background: var(--c2);
+    color: var(--c1);
+    text-align: center;
+    padding: 20px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.footer img {
+    border-radius: 50%;
 }
