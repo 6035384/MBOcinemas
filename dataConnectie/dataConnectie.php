@@ -33,7 +33,7 @@ class Database {
 
 $host = "localhost";
 $dbname = "cinema.sql";
-$username = "root";
+$username = "123";
 $port = "3306";
 $password = "";
 
