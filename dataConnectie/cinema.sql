@@ -29,10 +29,13 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `gebruikers` (
-  `id` int(10) NOT NULL,
-  `gebruikersnaam` varchar(255) NOT NULL,
-  `wachtwoord` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id` INT(10) AUTO_INCREMENT PRIMARY KEY,
+  `gebruikersnaam` VARCHAR(255) NOT NULL,
+  `wachtwoord` VARCHAR(255) NOT NULL
+);
+
+
+INSERT INTO `gebruikers` (`gebruikersnaam`, `wachtwoord`) VALUES ('admin', PASSWORD('admin123'));
 
 --
 -- Dumping data for table `gebruikers`
@@ -40,3 +43,15 @@ CREATE TABLE `gebruikers` (
 
 INSERT INTO `gebruikers` (`id`, `gebruikersnaam`, `wachtwoord`) VALUES
 (1, 'admin', 'admin');
+
+
+/* table voor beheerder films */
+
+CREATE TABLE `films` (
+  `id` INT(11) AUTO_INCREMENT PRIMARY KEY,
+  `title` VARCHAR(255) NOT NULL,
+  `genre` VARCHAR(100) NOT NULL,
+  `location` VARCHAR(100) NOT NULL,
+  `date` DATE NOT NULL,
+  `image` VARCHAR(255) NOT NULL
+);

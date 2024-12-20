@@ -1,4 +1,4 @@
-<?php include '../components/header.php'; ?>
+<?php include '../components/header2.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +23,6 @@
     </nav>
 
     <main class="form-container">
-        <!-- Login Box -->
         <div class="form-box">
             <h2>Login</h2>
             <form method="POST" action="../registerLogin/login.php">
@@ -39,7 +38,7 @@
             </form>
         </div>
 
-        <!-- Registratie Box -->
+       
         <div class="form-box">
             <h2>Sign Up</h2>
             <form method="POST" action="../registerLogin/signup.php">
@@ -57,7 +56,7 @@
     </main>
 
     <footer>
-        <?php include '../components/footer.php'; ?>
+        <?php include '../components/footer2.php'; ?>
     </footer>
 </body>
 </html>
