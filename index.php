@@ -150,7 +150,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                     <li>Locatie: <?php echo $movie['location']; ?></li>
                     <li>Datum: <?php echo $movie['date']; ?></li>
                 </ul>
-                <button class="button" style="vertical-align:middle"><span>Read more </span></button>
+                <button class="button" style="vertical-align:middle">
+                <a href="movie-details.php?title=<?php echo urlencode($movie['title']); ?>">Read more</a>
+                </button>
             </article>
         <?php endforeach; ?>
     <?php else: ?>

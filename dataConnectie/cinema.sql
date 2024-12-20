@@ -40,3 +40,28 @@ CREATE TABLE `gebruikers` (
 
 INSERT INTO `gebruikers` (`id`, `gebruikersnaam`, `wachtwoord`) VALUES
 (1, 'admin', 'admin');
+
+
+--
+-- Table structure for table `gebruikers`
+--
+
+CREATE TABLE `movies` (
+  `id` int(10) NOT NULL,
+  `gebruikersnaam` varchar(255) NOT NULL,
+  `wachtwoord` varchar(255) NOT NULL
+) EN
+
+INSERT INTO `movies` (`id`, `movie_name`) VALUES
+(1, 'Deadpool vs Wolverine');
+(2, 'The fall guy');
+(3, 'Despicable Me 4');
+(4, 'The Green Knight');
+(5, 'Fight Club');
+(6, 'Se7en');
+(7, 'Marie Antoinette');
+(8, 'Spirited Away');
+(9, 'Howls Moving Castle');
+(10, 'My Neighbor Totoro');
+(11, 'Nausicaa of the Valley of the Wind');
+(12, 'the batman');
