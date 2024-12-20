@@ -1,4 +1,4 @@
-<?php include 'components/header.php'; ?>
+<?php include 'components/header2.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

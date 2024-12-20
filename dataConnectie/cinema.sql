@@ -29,10 +29,13 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `gebruikers` (
-  `id` int(10) NOT NULL,
-  `gebruikersnaam` varchar(255) NOT NULL,
-  `wachtwoord` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id` INT(10) AUTO_INCREMENT PRIMARY KEY,
+  `gebruikersnaam` VARCHAR(255) NOT NULL,
+  `wachtwoord` VARCHAR(255) NOT NULL
+);
+
+
+INSERT INTO `gebruikers` (`gebruikersnaam`, `wachtwoord`) VALUES ('admin', PASSWORD('admin123'));
 
 --
 -- Dumping data for table `gebruikers`
