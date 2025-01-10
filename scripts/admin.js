@@ -41,7 +41,7 @@ document.getElementById('addFilmForm').addEventListener('submit', function (even
             if (value.length < 3) {
                 isValid = false;
                 input.style.borderColor = 'red';
-                alert('Title must be at least 3 characters long.');
+                alert('titel moet tenminste drie letters lang zijn.');
             }
         }
 
@@ -50,7 +50,7 @@ document.getElementById('addFilmForm').addEventListener('submit', function (even
             if (!/^\d{4}$/.test(value) || year < 1888 || year > new Date().getFullYear()) {
                 isValid = false;
                 input.style.borderColor = 'red';
-                alert('Enter a valid year (e.g., 1995).');
+                alert('voeg een geldig jaar toe (e.g., 1995).');
             }
         }
 
@@ -59,13 +59,13 @@ document.getElementById('addFilmForm').addEventListener('submit', function (even
             if (isNaN(rating) || rating < 0 || rating > 10) {
                 isValid = false;
                 input.style.borderColor = 'red';
-                alert('Rating must be a number between 0 and 10.');
+                alert('Cijfer moet tussen de 1 en de 10 zijn.');
             }
         }
     });
 
     if (!isValid) {
         event.preventDefault();
-        alert('Please correct the highlighted errors before submitting.');
+        alert('Verbeter astublieft uw errors.');
     }
 });

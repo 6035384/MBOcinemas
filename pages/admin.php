@@ -8,53 +8,93 @@ if (!isset($_SESSION['admin']) || $_SESSION['admin'] !== true) {
     exit();
 }
 
+class FilmManager {
+    private $pdo;
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['action'])) {
-        $action = $_POST['action'];
+    public function _construct($pdo) {
+        $this->pdo = $pdo;
+    }
 
+    public function getAllFilms() {
         try {
-            if ($action === 'add') {
-                $query = "INSERT INTO films (title, genre, location, date, image) VALUES (:title, :genre, :location, :date, :image)";
-                $stmt = $pdo->prepare($query);
-                $stmt->bindParam(':title', $_POST['title']);
-                $stmt->bindParam(':genre', $_POST['genre']);
-                $stmt->bindParam(':location', $_POST['location']);
-                $stmt->bindParam(':date', $_POST['date']);
-                $stmt->bindParam(':image', $_POST['image']);
-                $stmt->execute();
-                echo "Film succesvol toegevoegd!";
-            } elseif ($action === 'update') {
-                $query = "UPDATE films SET title = :title, genre = :genre, location = :location, date = :date, image = :image WHERE id = :id";
-                $stmt = $pdo->prepare($query);
-                $stmt->bindParam(':id', $_POST['id']);
-                $stmt->bindParam(':title', $_POST['title']);
-                $stmt->bindParam(':genre', $_POST['genre']);
-                $stmt->bindParam(':location', $_POST['location']);
-                $stmt->bindParam(':date', $_POST['date']);
-                $stmt->bindParam(':image', $_POST['image']);
-                $stmt->execute();
-                echo "Film succesvol bijgewerkt!";
-            } elseif ($action === 'delete') {
-                $query = "DELETE FROM films WHERE id = :id";
-                $stmt = $pdo->prepare($query);
-                $stmt->bindParam(':id', $_POST['id']);
-                $stmt->execute();
-                echo "Film succesvol verwijderd!";
-            }
+            $query = SELECT * FROM movies;
+            $stmt = $this->pdo->query($query);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
-            echo "Fout bij de bewerking: " . $e->getMessage();
+            throw new Exception("Fout bij ophalen van films: ". $e->getMessage());
+    }
+}
+
+public function addFilm($title, $genre, $location, $date, $image) {
+    try {
+        $query = "INSERT INTO movies (title, genre, location, date, image) VALUES (:title, :genre, :location, :date, :image)";
+            $stmt = $this->pdo->prepare($query);
+            $stmt->bindParam(':title', $title);
+            $stmt->bindParam(':genre', $genre);
+            $stmt->bindParam(':location', $location);
+            $stmt->bindParam(':date', $date);
+            $stmt->bindParam(':image', $image);
+            $stmt->execute();
+    } catch (PDOException $e) {
+        throw new Exception("Fout bij toevoegen van film: ". $e->getMessage());
+    }
+}
+
+public function updateFilm($id, $title, $genre, $location, $date, $image) {
+    try {
+        $query = "UPDATE films SET title = :title, genre = :genre, location = :location, date = :date, image = :image WHERE id = :id";
+            $stmt = $this->pdo->prepare($query);
+            $stmt->bindParam(':id', $id);
+            $stmt->bindParam(':title', $title);
+            $stmt->bindParam(':genre', $genre);
+            $stmt->bindParam(':location', $location);
+            $stmt->bindParam(':date', $date);
+            $stmt->bindParam(':image', $image);
+            $stmt->execute();
+        } catch (PDOException $e) {
+            throw new Exception("Fout bij het bijwerken van een film: " . $e->getMessage());
         }
     }
 }
 
+public function deleteFilm($id) {
+    try {
+        $query = "DELETE FROM films WHERE id = :id";
+        $stmt = $this->pdo->prepare($query);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+    } catch (PDOException $e) {
+        throw new Exception("Fout bij het verwijderen van een film: " . $e->getMessage());
+    }
+}
+
+$filmManager = new FilmManager($pdo);
+
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['action'])) {
+        $action = $_POST['action'];
+        try {
+            if ($action === 'add') {
+                $filmManager->addFilm($_POST['title'], $_POST['genre'], $_POST['location'], $_POST['date'], $_POST['image']);
+                echo "Film succesvol toegevoegd!";
+            } elseif ($action === 'update') {
+                $filmManager->updateFilm($_POST['id'], $_POST['title'], $_POST['genre'], $_POST['location'], $_POST['date'], $_POST['image']);
+                echo "Film succesvol bijgewerkt!";
+            } elseif ($action === 'delete') {
+                $filmManager->deleteFilm($_POST['id']);
+                echo "Film succesvol verwijderd!";
+            }
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+}
 
 try {
-    $query = "SELECT * FROM films";
-    $stmt = $pdo->query($query);
-    $films = $stmt->fetchAll(PDO::FETCH_ASSOC);
-} catch (PDOException $e) {
-    echo "Fout bij het ophalen van films: " . $e->getMessage();
+    $films = $filmManager->getAllFilms();
+} catch (Exception $e) {
+    echo $e->getMessage();
 }
 ?>
 
@@ -93,7 +133,7 @@ try {
                 <td><?= htmlspecialchars($film['date']) ?></td>
                 <td><?= htmlspecialchars($film['image']) ?></td>
                 <td>
-                    <form method="POST" style="display:inline;" id="addFilmsForm">
+                    <form method="POST" style="display:inline;">
                         <input type="hidden" name="action" value="update">
                         <input type="hidden" name="id" value="<?= $film['id'] ?>">
                         Titel: <input type="text" name="title" value="<?= htmlspecialchars($film['title']) ?>" required>
@@ -104,7 +144,6 @@ try {
                         <button type="submit">Bijwerken</button>
                     </form>
 
-                    
                     <form method="POST" style="display:inline;">
                         <input type="hidden" name="action" value="delete">
                         <input type="hidden" name="id" value="<?= $film['id'] ?>">
@@ -127,3 +166,4 @@ try {
     </form>
 </body>
 </html>
+
