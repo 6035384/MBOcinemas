@@ -93,8 +93,7 @@ try {
                 <td><?= htmlspecialchars($film['date']) ?></td>
                 <td><?= htmlspecialchars($film['image']) ?></td>
                 <td>
-                    
-                    <form method="POST" style="display:inline;">
+                    <form method="POST" style="display:inline;" id="addFilmsForm">
                         <input type="hidden" name="action" value="update">
                         <input type="hidden" name="id" value="<?= $film['id'] ?>">
                         Titel: <input type="text" name="title" value="<?= htmlspecialchars($film['title']) ?>" required>
